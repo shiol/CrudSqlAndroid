@@ -18,14 +18,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ConsultaLivrosActivity"></activity>
-        <activity android:name=".CadastrarLivrosActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LivrosCadastrar"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".LivrosConsultar"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".LivrosAlterar"
+            android:parentActivityName=".LivrosConsultar"></activity>
     </application>
 
 </manifest>

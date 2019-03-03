@@ -11,14 +11,14 @@ public class Conexao extends SQLiteOpenHelper {
 
 
     public Conexao(Context context) {
-        super(context, "banco.db", null, 2);
+        super(context, "banco.db", null, 3);
 
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "create table livros (id integer primary key autoincrement, titulo text, autor text, editora text)";
-        String sql2 = "create table ativos (id integer primary key autoincrement, descricao text, valor decimal)";
+        String sql = "create table livros (_id integer primary key autoincrement, titulo text, autor text, editora text)";
+        String sql2 = "create table ativos (_id integer primary key autoincrement, descricao text, valor decimal)";
         db.execSQL(sql);
         db.execSQL(sql2);
     }
@@ -29,4 +29,7 @@ public class Conexao extends SQLiteOpenHelper {
         db.execSQL("drop table if exists ativos");
         onCreate(db);
     }
+
+
 }
+

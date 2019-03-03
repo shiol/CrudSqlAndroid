@@ -35,7 +35,7 @@ public class AtivoController {
     public List<Ativo> getAtivos() {
         List<Ativo> ativos = new ArrayList<>();
 
-        Cursor cursor = banco.query("ativos", new String[]{"id", "descricao", "valor"}, null, null, null, null, null);
+        Cursor cursor = banco.query("ativos", new String[]{"_id", "descricao", "valor"}, null, null, null, null, null);
 
         while (cursor.moveToNext()) {
             Ativo ativo = new Ativo();

@@ -39,7 +39,7 @@ public class LivrosController {
 
     public Cursor carregaDados() {
         Cursor cursor;
-        String[] campos = {"id", "titulo"};
+        String[] campos = {"_id", "titulo"};
         db = conexao.getReadableDatabase();
 
         cursor = db.query("livros", campos, null, null, null, null, null, null);
@@ -49,6 +49,45 @@ public class LivrosController {
         }
         db.close();
         return cursor;
+    }
+
+
+    public Cursor carregaDadoById(int id) {
+        Cursor cursor;
+        String[] campos = {"_id", "titulo", "autor", "editora"};
+        String where = "_id" + "=" + id;
+        db = conexao.getReadableDatabase();
+        cursor = db.query("livros", campos, where, null, null, null, null, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
+
+    public void alteraRegistro(int id, String titulo, String autor, String editora) {
+        ContentValues valores;
+        String where;
+
+        db = conexao.getWritableDatabase();
+
+        where = "_id" + "=" + id;
+
+        valores = new ContentValues();
+        valores.put("titulo", titulo);
+        valores.put("autor", autor);
+        valores.put("editora", editora);
+
+        db.update("livros", valores, where, null);
+        db.close();
+    }
+
+    public void deletaRegistro(int id){
+        String where = "_id" + "=" + id;
+        db = conexao.getReadableDatabase();
+        db.delete("livros",where,null);
+        db.close();
     }
 
 }
